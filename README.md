@@ -1,4 +1,4 @@
-# Currency Converter
+# Currency Wallets
 
 ## Prerequisites 
 
