@@ -7,10 +7,13 @@ use Brick\Money\Exception\UnknownCurrencyException;
 use Brick\Money\Money;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\Entity(repositoryClass: WalletRepository::class)]
+#[ORM\Table(name: 'wallet')]
 class Wallet
 {
+    use TimestampableEntity;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

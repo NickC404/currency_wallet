@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\TimestampableTrait;
 use App\Repository\IntegrationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\Entity(repositoryClass: IntegrationRepository::class)]
 class Integration
 {
-    use TimestampableTrait;
+    use TimestampableEntity;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

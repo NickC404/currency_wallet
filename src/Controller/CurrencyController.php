@@ -8,11 +8,9 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class CurrencyController extends AbstractController
 {
-    #[Route('/currency', name: 'app_currency')]
-    public function index(): Response
+    #[Route('/currency/types', name: 'get-types', methods: ['GET'])]
+    public function getTypes(): Response
     {
-        return $this->render('currency/index.html.twig', [
-            'controller_name' => 'CurrencyController',
-        ]);
+        return $this->json();
     }
 }

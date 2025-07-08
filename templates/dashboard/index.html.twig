@@ -1,20 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DashboardController!{% endblock %}
+{% block title %}Dashboard{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="px-6 py-6">
+        <!-- Content -->
+        <div class="mt-6 space-y-10">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <!-- Wallets Section -->
+            <div>
+                <h2 class="text-2xl font-bold mb-4">Wallets <a href="{{ path('add-wallet') }}" class="btn btn-primary btn-xs">Add</a></h2>
+                <div class="flex gap-4 flex-wrap">
+                    {% for wallet in wallets %}
+                        <!-- Card 1 -->
+                        <div class="card w-80 bg-gradient-to-r from-green-500 to-yellow-600 text-white shadow-xl rounded-xl p-5">
+                            <div class="flex justify-between items-center mb-6">
+                                <span class="text-lg font-semibold tracking-widest">Cash - {{ wallet.currency }}</span>
+                            </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/nickcotterill/PhpstormProjects/currency_converter/src/Controller/DashboardController.php</code></li>
-        <li>Your template at <code>/Users/nickcotterill/PhpstormProjects/currency_converter/templates/dashboard/index.html.twig</code></li>
-    </ul>
-</div>
+                            <div class="mb-6">
+                                <div class="text-xl font-mono tracking-widest">{{ wallet.moneyFormatted }}</div>
+                            </div>
+
+                            <div class="flex justify-between text-sm">
+                                <div>
+                                    <div class="uppercase opacity-70">Account Holder</div>
+                                    <div class="font-semibold">John Doe</div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Activity Section -->
+            <div>
+                <h2 class="text-2xl font-bold mb-2">Transfers <button class="btn btn-primary btn-xs">Make New</button></h2>
+                    <table class="table">
+                        <!-- head -->
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Transfer From</th>
+                            <th>Transfer To</th>
+                            <th>Amount</th>
+                            <th>Fee</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th></th>
+                                <td>CashMoney</td>
+                                <td>MultiCurr</td>
+                                <td>£50</td>
+                                <td>$0</td>
+                                <td>
+                                    <button class="btn btn-primary btn-xs">View</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
 {% endblock %}

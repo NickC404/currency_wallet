@@ -2,16 +2,11 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\TimestampableTrait;
 use App\Repository\UserRepository;
-use DateTime;
-use DateTimeImmutable;
-use Deprecated;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\PostPersist;
-use Doctrine\ORM\Mapping\PrePersist;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -22,19 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    use TimestampableTrait;
-
-    #[PrePersist]
-    public function onPrePersist(): void
-    {
-        $this->setCreatedAt(new DateTimeImmutable());
-    }
-
-    #[PostPersist]
-    public function onPreUpdate(): void
-    {
-        $this->setUpdatedAt(new DateTime());
-    }
+    use TimestampableEntity;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -63,7 +46,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, Wallet>
      */
-    #[ORM\OneToMany(targetEntity: Wallet::class, mappedBy: 'appUser')]
+    #[ORM\OneToMany(targetEntity: Wallet::class, mappedBy: 'owner')]
     private Collection $wallets {
         get {
             return $this->wallets;
