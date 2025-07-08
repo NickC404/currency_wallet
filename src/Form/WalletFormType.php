@@ -13,11 +13,11 @@ class WalletFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('currency', ChoiceType::class, [
-            'choices'  => [
+            'choices' => [
                 'US Dollars' => 'USD',
                 'GB Pounds' => 'GBP',
                 'Euros' => 'EUR',
-            ]
+            ],
         ]);
     }
 

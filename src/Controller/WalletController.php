@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Wallet;
 use App\Form\WalletFormType;
 use Brick\Money\Exception\UnknownCurrencyException;
-use Brick\Money\Money;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
