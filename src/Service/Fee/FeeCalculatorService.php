@@ -4,7 +4,7 @@ namespace App\Service\Fee;
 
 use Brick\Money\Money;
 
-class FeeCalculatorService
+final class FeeCalculatorService
 {
     public const string LEVEL_LOW = 'low';
     public const int LEVEL_LOW_VALUE = 100;

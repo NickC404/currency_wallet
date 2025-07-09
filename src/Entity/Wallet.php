@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\Currency;
 use App\Repository\WalletRepository;
 use Brick\Money\Exception\UnknownCurrencyException;
 use Brick\Money\Money;
@@ -22,9 +23,8 @@ class Wallet
             return $this->id;
         }
     }
-
-    #[ORM\Column(length: 3)]
-    private ?string $currency = null;
+    #[ORM\Column(enumType: Currency::class)]
+    private Currency $currency;
 
     #[ORM\Column(type: Types::BIGINT)]
     private ?string $amount = null;
@@ -33,16 +33,9 @@ class Wallet
     #[ORM\JoinColumn(nullable: false)]
     private ?User $owner = null;
 
-    public function getCurrency(): ?string
+    public function getCurrency(): Currency
     {
         return $this->currency;
-    }
-
-    public function setCurrency(string $currency): static
-    {
-        $this->currency = $currency;
-
-        return $this;
     }
 
     public function getAmount(): ?string
@@ -62,7 +55,7 @@ class Wallet
      */
     public function getMoneyFormatted(): string
     {
-        return Money::ofMinor($this->amount, $this->currency);
+        return Money::ofMinor($this->amount, $this->currency->value);
     }
 
     public function getOwner(): ?User

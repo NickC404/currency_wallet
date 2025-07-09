@@ -13,9 +13,9 @@
                 <div class="flex gap-4 flex-wrap">
                     {% for wallet in wallets %}
                         <!-- Card 1 -->
-                        <div class="card w-80 bg-gradient-to-r from-green-500 to-yellow-600 text-white shadow-xl rounded-xl p-5">
+                        <div class="card w-80 bg-gradient-to-r from-red-400 to-red-600 text-white shadow-xl rounded-xl p-5">
                             <div class="flex justify-between items-center mb-6">
-                                <span class="text-lg font-semibold tracking-widest">Cash - {{ wallet.currency }}</span>
+                                <span class="text-lg font-semibold tracking-widest">Cash - {{ wallet.currency.value }}</span>
                             </div>
 
                             <div class="mb-6">
