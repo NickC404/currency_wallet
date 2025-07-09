@@ -15,8 +15,6 @@ use Symfony\Component\Routing\Attribute\Route;
 final class TransferController extends AbstractController
 {
     public function __construct(
-        private WalletTransferService $walletTransferService,
-        private CurrencyConverter $currencyConverter,
     ) {
     }
 
